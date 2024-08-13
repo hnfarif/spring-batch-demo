@@ -9,10 +9,10 @@ public class SensorDataAnomalyProcessor implements ItemProcessor<DailyAggregated
     @Override
     public AnomalyData process(DailyAggregatedSensorData item) throws Exception {
 
-        if ((item.min() / item.avg()) < THRESHOLD) {
-            return new AnomalyData(item.date(), AnomalyType.MINIMUM, item.min());
-        } else if ((item.avg() / item.max()) < THRESHOLD) {
-            return new AnomalyData(item.date(), AnomalyType.MAXIMUM, item.max());
+        if ((item.getMin() / item.getAvg()) < THRESHOLD) {
+            return new AnomalyData(item.getDate(), AnomalyType.MINIMUM, item.getMin());
+        } else if ((item.getAvg() / item.getMax()) < THRESHOLD) {
+            return new AnomalyData(item.getDate(), AnomalyType.MAXIMUM, item.getMax());
         }else {
             return null;
         }
